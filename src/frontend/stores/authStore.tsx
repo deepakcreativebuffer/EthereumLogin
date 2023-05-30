@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand';
 import { provider } from "../initializers/ethers"
 import axios from "axios"
 import { SiweMessage } from 'siwe';
@@ -19,14 +19,14 @@ export const authStore = create<TAuthStore>((set) => ({
     init: async () => {
         try {
             const res = await axios.get('/api/validate')
-            console.log("res>>>>>",res)
+            // console.log("res>>>>>",res)
             set({ address: res.data.address, loggedIn: true, ready: true })
 
         } catch (err) {
             const accounts = await provider.listAccounts()
-            console.log("accounts >>>>>>>",accounts)
+            // console.log("accounts >>>>>>>",accounts)
             if (accounts[0]) {
-                console.log("accounts[0]>>>>>>>>>>>>>>",accounts[0])
+                // console.log("accounts[0]>>>>>>>>>>>>>>",accounts[0])
                 set({ ready: true, address:accounts[0].toString() })
             } else {
                 set({ ready: true })

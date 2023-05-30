@@ -9,6 +9,8 @@ interface Iprops {
 export default function RequireAuth({ element }: Iprops) {
     const s = authStore()
 
+    console.log("s.loggedIn >>", s.loggedIn)
+
     if (!s.loggedIn) return <Navigate to="/login" />
     return <>{element}</>
 
